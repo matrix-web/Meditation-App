@@ -8,7 +8,6 @@ const app = () => {
 
     // Sounds
     const sounds = document.querySelectorAll(".sound-picker button")
-
     // Time display
     const timeDisplay = document.querySelector(".time-display")
     // Time select
@@ -60,20 +59,20 @@ const app = () => {
 
     // Animated the circle
     song.ontimeupdate = () => {
-        let currentTime = song.currentTime
-        let elapsed = fakeDuration - currentTime
-        let seconds = Math.floor(elapsed % 60)
-        let minutes = Math.floor(elapsed / 60)
+        const currentTime = song.currentTime
+        const elapsed = fakeDuration - currentTime
+        const seconds = Math.floor(elapsed % 60)
+        const minutes = Math.floor(elapsed / 60)
 
         // Animate the circle
-        let progress = outlineLength - (currentTime / fakeDuration) * outlineLength
+        const progress = outlineLength - (currentTime / fakeDuration) * outlineLength
         outline.style.strokeDashoffset = progress
 
         // Animate the text
         timeDisplay.innerText = `${addZero(minutes)}:${addZero(seconds)}`;
 
         if (currentTime >= fakeDuration) {
-            sounds.pause()
+            song.pause()
             song.currentTime = 0
             play.src = './svg/play.svg'
             video.pause()
